@@ -1,0 +1,25 @@
+html, body { 
+    height: 100%; 
+    background-image: url(../images/background-balance-beach-289586.jpg); 
+    background-size: cover;
+}
+
+* {
+    text-shadow: 0 0 3px #000;
+    font-family: 'Poppins', sans-serif;
+    /* font-weight: 400; */
+    color: #fff;
+}
+
+#chat-input { text-shadow: 0 0 0px white; }
+
+footer { position: sticky; top: 100%; }
+
+.bg-transdark {
+    background: #ffffff44; 
+}
+
+.chat-log { 
+    height: 300px;
+    overflow-y: scroll;
+}
