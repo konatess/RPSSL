@@ -3,3 +3,13 @@
 // <label class="btn btn-secondary active">
 //    <input type="radio" name="options" id="option1" autocomplete="off" checked> Name
 // </label>
+
+
+
+// steps
+    // modal to get username
+    $(window).on('load',function(){
+        $('#usernameModal').modal('show');
+    });
+    // save username to local and to database
+    // 

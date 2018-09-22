@@ -1,25 +1,27 @@
 html, body { 
     height: 100%; 
-    background-image: url(../images/background-balance-beach-289586.jpg); 
+    background-image: url(../images/abstract-ancient-antique-235985.jpg); 
     background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
 }
 
-* {
-    text-shadow: 0 0 3px #000;
-    font-family: 'Poppins', sans-serif;
-    /* font-weight: 400; */
-    color: #fff;
-}
+h1, h2, h3, h4, h5, h6 { font-family: 'Eagle Lake', cursive; }
 
-#chat-input { text-shadow: 0 0 0px white; }
+p { 
+    font-size: 1.1em; 
+    font-family: 'Raleway', sans-serif;
+    color: #000;
+}
 
 footer { position: sticky; top: 100%; }
 
-.bg-transdark {
-    background: #ffffff44; 
+.bg-filter {
+    background: #ffffff66; 
 }
 
 .chat-log { 
     height: 300px;
     overflow-y: scroll;
 }
+
