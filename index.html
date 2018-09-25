@@ -12,6 +12,7 @@
         <link rel="stylesheet" href="assets/css/style.css">
     </head>
     <body class="bg-filter">
+        <!-- modal to collect username -->
         <div class="modal fade" id="usernameModal" tabindex="-1" role="dialog" aria-labelledby="usernameModalTitle" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
@@ -23,87 +24,98 @@
                     </div>
                 <div class="modal-body">
                         <div class="input-group mb-3">
-                            <input type="text" class="form-control" placeholder="Recipient's username" aria-label="Recipient's username" aria-describedby="button-addon2">
+                            <input type="text" class="form-control" id="username" placeholder="Username" aria-label="Username" aria-describedby="username">
                         </div>
                 </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-dark">Save</button>
+                        <button type="button" class="username-btn btn btn-dark">Save</button>
                     </div>
                 </div>
             </div>
         </div>
+        <!-- header -->
         <header class="text-center p-1"><h1>Rock Paper Scissors Spock Lizard Online</h1></header> 
+        <!-- main content -->
         <div class="row w-100">
+            <!-- right half of page -->
             <div class="col-12 col-md-6"> 
                 <div class="card text-center ml-5 mr-1 border-0 bg-transparent">
                     <div class="card-body">
                         <h4 class="card-title">Instructions</h4>
+                        <!-- some instructional text -->
                         <p class="card-text">For a quick explanation of how Rock, Paper, Scissors, Spock, Lizard works (or if you like Big Bang Theory and just want to watch Sheldon be Sheldon) click on the video below.</p>
+                        <!-- border for visual sizing purposes -->
                         <div class="mx-5">
+                            <!-- instructional video BBT -->
                             <div class="embed-responsive embed-responsive-16by9">
                                 <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/Kov2G0GouBw?rel=0&amp;start=25" allowfullscreen></iframe>
                             </div>
                         </div>
+                        <!-- more instructional text -->
                         <p class="card-text pt-3">You got all that right? If not, you may want to check out the website by the creators of the game.</p>
                         <a href="http://www.samkass.com/theories/RPSSL.html" target="_blank" class="btn btn-dark">The Original RPSSL</a>
                     </div>
                 </div>
             </div>
+            <!-- left half of page -->
             <div class="col-12 col-md-6">
                 <div class="card text-center mr-5 ml-1 border-0 bg-transparent">
                     <div class="card-body">
                         <h4 class="card-title">Play</h4>
+                        <!-- instructional message that changes when an item is selected. Will also update wins/losses here -->
                         <p class="card-text">Click on a button below to make your first play.</p>
+                        <!-- buttons for playing game -->
                         <div class="btn-group btn-group-toggle mb-4" data-toggle="buttons">
-                            <label class="play-btn btn btn-dark" id="rock-label">
+                            <label class="play-btn btn btn-dark" id="rock-label" data-value="Rock">
                                 <input type="radio" name="options" id="rock-input" autocomplete="off"> Rock
                             </label>
-                            <label class="play-btn btn btn-dark" id="paper-label">
+                            <label class="play-btn btn btn-dark" id="paper-label" data-value="Paper">
                                 <input type="radio" name="options" id="paper-input" autocomplete="off"> Paper
                             </label>
-                            <label class="play-btn btn btn-dark" id="scissors-label">
+                            <label class="play-btn btn btn-dark" id="scissors-label" data-value="Scissors">
                                 <input type="radio" name="options" id="scissors-input" autocomplete="off"> Scissors
                             </label>
-                            <label class="play-btn btn btn-dark" id="spock-label">
+                            <label class="play-btn btn btn-dark" id="spock-label" data-value="Spock">
                                 <input type="radio" name="options" id="spock-input" autocomplete="off"> Spock
                             </label>
-                            <label class="play-btn btn btn-dark" id="lizard-label">
+                            <label class="play-btn btn btn-dark" id="lizard-label" data-value="Lizard">
                                 <input type="radio" name="options" id="lizard-input" autocomplete="off"> Lizard
                             </label>
                         </div>
+                        <!-- game status message -->
                         <div class="game-status">
                             <p>Waiting for opponent...</p>
                         </div>
+                        <!-- chat-log box -->
                         <div class="chat-log border border-dark rounded px-3 d-flex flex-column justify-content-end">    
-                            <div class="">
-                                <p class="text-left">Sweet! So, what do you wanna do today? </p>
-                                <span class="float-right">11:02</span>
-                            </div>
-                            <div class="">
-                                <p class="text-left"><span class="float-left text-primary">User1</span>: Nah, I dunno. Play soccer.. or learn more coding perhaps? </p>
-                                <p class="text-left">Nah, I dunno. Play soccer.. or learn more coding perhaps? </p>
-                                <span class="float-right">11:05</span>
-                            </div>
                         </div>
+                        <!-- chat input -->
                         <div class="input-group mt-1">
+                            <input type="text" class="form-control" id="chat-input" placeholder="Type your message here..." aria-label="chat input field" aria-describedby="chat input field">
                             <div class="input-group-prepend">
-                                <span class="input-group-text border-dark bg-dark text-white" id="chat-label">Chat</span>
+                                <button class="btn btn-dark rounded-right" type="button" id="chat-button">Send</button>
                             </div>
-                            <input type="text" class="form-control" aria-label="Chat input" aria-describedby="input-for-chat">
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+        <!-- footer -->
         <footer class="text-center p-1">
+            <!-- link to background origin -->
             <p> <a href="https://www.pexels.com/photo/abstract-ancient-antique-art-235985/" target="_blank">background</a> by Pixabay on <a href="https://www.pexels.com" target="_blank">Pexels</a> </p>
         </footer>
 
         <!-- Optional JavaScript -->
         <!-- jQuery first, then Popper.js, then Bootstrap JS -->
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.min.js" integrity="sha384-o+RDsa0aLu++PJvFqy8fFScvbHFLtbvScb8AjopnFD+iEQ7wo/CG0xlczd+2O/em" crossorigin="anonymous"></script>
-        <script src="assets/javascript/app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/5.4.1/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/5.4.1/firebase-database.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.js"></script>
+        <script src="assets/javascript/config.js"></script>
+        <script src="assets/javascript/app2.js"></script>
     </body>
 </html>
