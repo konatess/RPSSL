@@ -18,9 +18,10 @@ var wins = 0;
 var losses = 0;
 var userId = 2;
 var mostRecentUser;
-database.ref().on('value', function(chatter) {
-    mostRecentUser = chatter.child('chat').val();
-})
+var roomnumber;
+database.ref().on('value', function(data) {
+    mostRecentUser = data.child('chat').val();
+});
 
 
 
@@ -36,7 +37,7 @@ database.ref().on('value', function(chatter) {
         database.ref('users/' + username).update({
             fWins: wins,
             fLosses: losses,
-            fchoice: ""
+            fChoice: ""
         })
         $('#usernameModal').modal('hide');
         // FIXME: this doesn't show up in the database
@@ -55,13 +56,18 @@ database.ref().on('value', function(chatter) {
         choice = $(this).attr("data-value");
         // save choice to database
         database.ref('users/' + username).update({
-            fchoice: choice
+            fChoice: choice
         })
     });
     // when tracker is true, if the other user's tracker is also true: 
         // disable buttons (for both) by adding attributes: disabled, aria-disabled="true"
         
         // save the clicked button for both
+        var playerChoice;
+        var opponentChoice;
+        database.ref().on('value', function(data) {
+            playerChoice = data.child('users/').val();
+        });
         // compare to see who won
         var allPlayObj = [
             {
@@ -137,7 +143,7 @@ database.ref().on('value', function(chatter) {
                     $(".chat-log").append(newMessage, time);
                 }
             // save who typed most recent input to database
-            database.ref('chat/').set(username);
+            database.ref('chatprev/').set(username);
             // and save message 
             database.ref('message/').set(chatMessage);
             }
