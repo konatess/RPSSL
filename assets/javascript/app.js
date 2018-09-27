@@ -16,7 +16,6 @@ var username;
 var choice;
 var wins = 0;
 var losses = 0;
-var userId = 2;
 var mostRecentUser;
 var roomnumber;
 database.ref().on('value', function(data) {
@@ -40,15 +39,6 @@ database.ref().on('value', function(data) {
             fChoice: ""
         })
         $('#usernameModal').modal('hide');
-        // FIXME: this doesn't show up in the database
-        // database.ref().transaction(function(usercount) {
-        //     if (usercount != null) {
-        //         usercount++;
-        //     } else {
-        //         usercount = 1;
-        //     }
-        //     return usercount;
-        // })
     });
     // get user's clicked play button 
     $(document).on("click", ".play-btn", function() {
@@ -148,17 +138,4 @@ database.ref().on('value', function(data) {
             database.ref('message/').set(chatMessage);
             }
         });
-        // when user leaves, delete their data
-        $(window).on("beforeunload", function() {
-            // remove that user from firebase
-            database.ref('users/' + username).remove();
-            console.log("Unload")
-            // database.ref(childRef).transaction(function(usercount) {
-            //     if (usercount != null) {
-            //         usercount++;
-            //     } else {
-            //         usercount = 1;
-            //     }
-            //     return usercount;
-            // })
-        })
+        

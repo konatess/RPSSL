@@ -63,28 +63,28 @@
                     <div class="card-body">
                         <h4 class="card-title">Play</h4>
                         <!-- instructional message that changes when an item is selected. Will also update wins/losses here -->
-                        <p class="card-text">Click on a button below to make your first play.</p>
+                        <p class="card-text" id="game-status">Click on a button below to make your first play.</p>
                         <!-- buttons for playing game -->
                         <div class="btn-group btn-group-toggle mb-4" data-toggle="buttons">
                             <label class="play-btn btn btn-dark" id="rock-label" data-value="Rock">
-                                <input type="radio" name="options" id="rock-input" autocomplete="off"> Rock
+                                <input class="btn-pusher" type="radio" name="options" id="rock-input" autocomplete="off"> Rock
                             </label>
                             <label class="play-btn btn btn-dark" id="paper-label" data-value="Paper">
-                                <input type="radio" name="options" id="paper-input" autocomplete="off"> Paper
+                                <input class="btn-pusher" type="radio" name="options" id="paper-input" autocomplete="off"> Paper
                             </label>
                             <label class="play-btn btn btn-dark" id="scissors-label" data-value="Scissors">
-                                <input type="radio" name="options" id="scissors-input" autocomplete="off"> Scissors
+                                <input class="btn-pusher" type="radio" name="options" id="scissors-input" autocomplete="off"> Scissors
                             </label>
                             <label class="play-btn btn btn-dark" id="spock-label" data-value="Spock">
-                                <input type="radio" name="options" id="spock-input" autocomplete="off"> Spock
+                                <input class="btn-pusher" type="radio" name="options" id="spock-input" autocomplete="off"> Spock
                             </label>
                             <label class="play-btn btn btn-dark" id="lizard-label" data-value="Lizard">
-                                <input type="radio" name="options" id="lizard-input" autocomplete="off"> Lizard
+                                <input class="btn-pusher" type="radio" name="options" id="lizard-input" autocomplete="off"> Lizard
                             </label>
                         </div>
                         <!-- game status message -->
-                        <div class="game-status">
-                            <p>Waiting for opponent...</p>
+                        <div>
+                            <p class="player-status">Waiting for opponent...</p>
                         </div>
                         <!-- chat-log box -->
                         <div class="chat-log border border-dark rounded px-3 d-flex flex-column justify-content-end">    
