@@ -202,6 +202,7 @@ function makeRoom() {
         $('.play-btn').removeClass('active');
         choice = "";
         database.ref('users/' + username).update({fChoice: ""})
+        database.ref('users/' + opponent).update({fChoice: ""})
     }
 
 
@@ -222,6 +223,11 @@ function makeRoom() {
     // listener for database change in chat
     database.ref('rooms').on('value', function(data) {
         if (roomnumber !== 0) {
+            // make sure player A is connected
+            var playerA = data.child(roomnumber + '/A').val();
+            if (playerA === username) {
+                opponent = data.child(roomnumber + '/B').val();
+            }
             // save chat message
             chatMessage = data.child(roomnumber + '/message').val();
             console.log('Chat message: ' + chatMessage)
@@ -279,85 +285,3 @@ $(window).on("beforeunload", function() {
         console.log("Unload")
     }
 });
-
-// check and create roomnumber
-// database.ref('rooms/')
-// var roomSnap = database.ref('rooms/' + username);
-//         roomSnap.transaction(function(currentData) {
-//             if (currentData === null) {
-//                 return username;
-//             } else {
-//                 console.log('User already exists.');
-//                 $('#usernameModalTitle').text('That name is already in use.')
-//                 return; // Abort the transaction.
-//             }
-//             }, function(error, committed) {
-//             if (error) {
-//                 console.log('Transaction failed abnormally!', error);
-//             } else if (!committed) {
-//                 console.log('We aborted the transaction (because ' +username+ ' already exists).');
-//             } else {
-//                 console.log('User ' +username+ ' added!');
-                
-//                 $('#usernameModal').modal('hide');
-//             }
-            
-//             });
-  
-
-
-
-// // Assume we have the following data in the Database:
-// {
-//     "users": {
-//       "ada": {
-//         "first": "Ada",
-//         "last": "Lovelace"
-//       },
-//       "alan": {
-//         "first": "Alan",
-//         "last": "Turing"
-//       }
-//     }
-//   }
-  
-//   // Loop through users in order with the forEach() method. The callback
-//   // provided to forEach() will be called synchronously with a DataSnapshot
-//   // for each child:
-//   var query = firebase.database().ref("users").orderByKey();
-//   query.once("value")
-//     .then(function(snapshot) {
-//       snapshot.forEach(function(childSnapshot) {
-//         // key will be "ada" the first time and "alan" the second time
-//         var key = childSnapshot.key;
-//         // childData will be the actual contents of the child
-//         var childData = childSnapshot.val();
-//     });
-//   });
-
-//   // You can cancel the enumeration at any point by having your callback
-// // function return true. For example, the following code sample will only
-// // fire the callback function one time:
-// var query = firebase.database().ref("users").orderByKey();
-// query.once("value")
-//   .then(function(snapshot) {
-//     snapshot.forEach(function(childSnapshot) {
-//       var key = childSnapshot.key; // "ada"
-
-//       // Cancel enumeration
-//       return true;
-//   });
-// });
-
-
-
-// // Increment Ada's rank by 1.
-// var adaRankRef = firebase.database().ref('users/ada/rank');
-// adaRankRef.transaction(function(currentRank) {
-//   // If users/ada/rank has never been set, currentRank will be `null`.
-//   return currentRank + 1;
-// });
-
-
-
-
