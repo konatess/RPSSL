@@ -64,6 +64,7 @@ var allPlayObj = [
                 console.log('User ' +username+ ' added!');
                 // check and create roomnumber
                 findRoom();
+                database.ref('users/' + username).onDisconnect().remove();
                 $('#usernameModal').modal('hide');
             } 
         });
@@ -104,7 +105,7 @@ function findRoom() {
             // 'full' will return a Boolean
             var a = childSnapshot.child('full').val();
             console.log('full for ' +key+ ' is ' +a)
-            // if a not full room is found, join the room
+            // if a not-full room is found, join the room
             if (!a) {
                 roomnumber = key;
                 console.log('Key = ' +key+ ', Roomnumber = ' +roomnumber);
@@ -221,6 +222,11 @@ function makeRoom() {
     });
 
     // listener for database change in chat
+    // FIXME: chat updates whenever ANY change occurs in any of the rooms
+    // when I tried adding roomnumber to the first reference listener 
+    // (and removing roomnumber from internal references)
+    // the the chat function completely stopped working
+    // does it bind to the roomnumber? How do I get this listener to bind to only a non-0 room?
     database.ref('rooms').on('value', function(data) {
         if (roomnumber !== 0) {
             // make sure player A is connected
@@ -236,7 +242,7 @@ function makeRoom() {
             console.log('New user: ' + newUser)
             // append most recent input chat box
                 // if input is from same user as previous message: 
-                if (mostRecentUser === newUser){
+                if (newUser === ("" || null) || mostRecentUser === newUser){
                     // remove time stamp
                     $(".time-stamp").remove();
                     // append <p> with new message
@@ -274,14 +280,23 @@ function makeRoom() {
     });
 
 
-// when user leaves, delete their data
-$(window).on("beforeunload", function() {
-    // remove that user from firebase
-    if (roomnumber !== 0) {
-        database.ref('users/' + username).remove();
-        database.ref('rooms/' + roomnumber).update({A: opponent, full: false, message: username + ' has disconnected.'});
-        database.ref('rooms/' + roomnumber + '/B').set("");
-        database.ref('rooms/' + roomnumber + '/chatPrev').set("");
-        console.log("Unload")
-    }
-});
+// // when user leaves, delete their data
+// $(window).on("beforeunload", function() {
+//     // remove that user from firebase
+//     if (roomnumber !== 0) {
+//         database.ref('users/' + username).remove();
+//         if (opponent === ("" || null)) {
+//             database.ref('rooms/' + roomnumber).remove();
+//             console.log('Room should be removed')
+//         }
+//         else {
+//             database.ref('rooms/' + roomnumber + '/B').remove();
+//             database.ref('rooms/' + roomnumber + '/chatPrev').remove();
+//             database.ref('rooms/' + roomnumber).update({A: opponent, full: false, message: username + ' has disconnected.'});
+//         }
+//     }
+// });
+
+
+
+database.ref('rooms/' + roomnumber)
