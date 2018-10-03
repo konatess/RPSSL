@@ -168,7 +168,9 @@ var chatListen = function() {
 var leaveListen = function() {
     var disconnectRef = database.ref('rooms/' + roomnumber).onDisconnect();
     disconnectRef.update({
-        full: false
+        full: false,
+        joined: opponent,
+        message: username + ' has left.'
     })
     var playerRef = database.ref('rooms/' + roomnumber + '/players/' + username).onDisconnect();
     playerRef.remove();
